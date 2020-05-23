@@ -366,3 +366,15 @@ sumallR (x:xss) = sum x + sumallR xss
 borraR y [] = []
 borraR y (x:xs) | y == x = borraR y xs
                 | otherwise = x:borraR y xs
+
+
+
+producto ys = foldr (*) 1 ys
+
+colas [] = [[]]
+colas (x:xs) = (x:xs) : colas xs 
+
+cabezas [] = [[]]
+cabezas (x:xs) = [x:y | y <- cabezas xs]
+
+--hola
