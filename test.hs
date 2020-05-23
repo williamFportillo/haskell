@@ -377,4 +377,17 @@ colas (x:xs) = (x:xs) : colas xs
 cabezas [] = [[]]
 cabezas (x:xs) = [x:y | y <- cabezas xs]
 
+
+repite x = x:repite x
+
+repiteC x = [ x | y<- [1..] ]
+
+repiteFinita 0 _ = []
+repiteFinita n x = x:repiteFinita (n-1) x
+
+repiteFinitaC n x = [ x | y<-[1..n]]
+
+repiteFinita' n x = take n (repite x)
+
+ecoC xs = concat [ repiteFinita' y x | (y,x)<- zip [1..] xs]
 --hola
