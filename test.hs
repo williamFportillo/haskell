@@ -390,4 +390,10 @@ repiteFinitaC n x = [ x | y<-[1..n]]
 repiteFinita' n x = take n (repite x)
 
 ecoC xs = concat [ repiteFinita' y x | (y,x)<- zip [1..] xs]
+
+potenciasMenores x y = takeWhile (<y) (map (x^) [1..])
+
+agrupamiento n [] = []
+agrupamiento n xs | n <= length xs = take n xs : agrupamiento n (drop n xs)
+                  | otherwise = take n xs : agrupamiento n xs
 --hola
