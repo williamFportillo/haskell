@@ -396,4 +396,18 @@ potenciasMenores x y = takeWhile (<y) (map (x^) [1..])
 agrupamiento n [] = []
 agrupamiento n xs | n <= length xs = take n xs : agrupamiento n (drop n xs)
                   | otherwise = take n xs : agrupamiento n xs
---hola
+
+divisores x = sum[ 1 | y <- [1..x], x `mod` y == 0 ]
+
+saberPrimo x | divisores x == 2 = True
+             | otherwise = False
+
+
+
+esMuyCompuesto x =if (divisores x) > maximum[divisores y | y <- [1..x-1]] then True else False
+
+
+primoTruncable x | x < 10  = saberPrimo x
+                 | otherwise = saberPrimo x && primoTruncable (x `div` 10)
+
+enteros = 0 : concat [ [-x, x] | x <- [1..]]
