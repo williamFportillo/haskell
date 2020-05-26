@@ -411,3 +411,18 @@ primoTruncable x | x < 10  = saberPrimo x
                  | otherwise = saberPrimo x && primoTruncable (x `div` 10)
 
 enteros = 0 : concat [ [-x, x] | x <- [1..]]
+
+-- ordena en pares una lista por ejemplo: [1,2,3] = [(1,2), (1,3), (2,3)]
+paresOrdenados [] = [] 
+paresOrdenados (x:xs) = [(x,n) | n <- xs] ++ paresOrdenados xs
+
+-- ordena en pares una lista utilizando repeat por ejemplo: [1,2,3] = [(1,2), (1,3), (2,3)]
+paresOrdenados' [] = []
+paresOrdenados' (x:xs) = zip (repeat x) xs ++ paresOrdenados' xs 
+
+-- repite n veces la funcion en x ejemplo: 3 (*10) 5 = 5000
+potenciaFunc 0 _ x = x
+potenciaFunc n f x = potenciaFunc (n-1) f (f x)
+
+-- repite n veces la funcion en x, sin recursion ejemplo: 3 (*10) 5 = 5000
+potenciaFunc' n f x = last (take (n+1) (iterate f x))
