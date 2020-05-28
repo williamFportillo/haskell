@@ -426,3 +426,15 @@ potenciaFunc n f x = potenciaFunc (n-1) f (f x)
 
 -- repite n veces la funcion en x, sin recursion ejemplo: 3 (*10) 5 = 5000
 potenciaFunc' n f x = last (take (n+1) (iterate f x))
+
+
+-- decide si x puede expresarse como suma de dos elementos de ys y, en su caso, devuelve un par de elementos de ys cuya suma es x. Por ejemplo, sumaDeDos 9 [7,4,6,2,5] == Just (7,2)
+
+sumaDeDos _ [] = Nothing
+sumaDeDos y (x:xs) | (y-x) `elem` xs = Just (x,y-x)
+                     | otherwise = sumaDeDos y xs
+
+--crea un numero de telefono agarrando una lista de int = [0,0,0,1,2,3,4,5,6,7] = (000) 123-4567
+createPhoneNumber :: [Int] -> String
+-- Implement createPhoneNumber
+createPhoneNumber xs = "(" ++ show (listaNumeroR(take 3 xs)) ++ ") " ++ show (listaNumeroR(take 3 (drop 3 xs))) ++ "-" ++  show (listaNumeroR(take 4 (drop 6 xs)))
